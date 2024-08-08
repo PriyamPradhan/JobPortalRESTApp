@@ -16,7 +16,7 @@ public class JobRestController {
     private JobService jobService;
 
     //fetch data from server | produces = "application/xml" -> result will only be in json format, likewise we can use "application/xml"
-    @GetMapping(path ="jobPosts", produces = "application/xml")
+    @GetMapping(path ="jobPosts", produces = "application/json")
     @ResponseBody
     public List<JobPost> getAllJobs() {
         return jobService.getAllJobs();
@@ -49,6 +49,13 @@ public class JobRestController {
     public String deleteJob(@PathVariable("postId") int postId){
         jobService.deleteJob(postId);
         return "Job deleted";
+    }
+
+    //inserted default data
+    @GetMapping("load")
+    public String loadData(){
+        jobService.load();
+        return "Data loaded successfully";
     }
 
 
