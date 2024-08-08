@@ -57,4 +57,8 @@ public class JobService {
 
         jobRepo.saveAll(jobOpening);
     }
+
+    public List<JobPost> search(String key) {
+        return jobRepo.findByPostProfileContainingOrPostDescContaining(key, key);
+    }
 }

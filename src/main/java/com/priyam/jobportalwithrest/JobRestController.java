@@ -28,7 +28,10 @@ public class JobRestController {
         return jobService.getJob(postId);
     }
 
-
+    @GetMapping("jobPosts/keyword/{key}")
+    public List<JobPost> searchByKeyword(@PathVariable("key") String key){
+        return jobService.search(key);
+    }
 
     //send data to server | consumes = "application/json" -> client can only send json format, xml format will be rejected
     @PostMapping(path = "jobPosts", consumes = "application/json")
