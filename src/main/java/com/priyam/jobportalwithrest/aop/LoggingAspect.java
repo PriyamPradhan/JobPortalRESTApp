@@ -1,10 +1,7 @@
 package com.priyam.jobportalwithrest.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -33,6 +30,11 @@ public class LoggingAspect {
     @AfterThrowing("execution(* com.priyam.jobportalwithrest.service.JobService.getAllJobs(..)) || execution(* com.priyam.jobportalwithrest.service.JobService.getJob(..))")
     public void logMethodCrash(JoinPoint jp){             //join Point
         LOGGER.info("Method has some issues : " + jp.getSignature().getName());
+    }
+
+    @AfterReturning("execution(* com.priyam.jobportalwithrest.service.JobService.getAllJobs(..)) || execution(* com.priyam.jobportalwithrest.service.JobService.getJob(..))")
+    public void logMethodSuccess(JoinPoint jp){             //join Point
+        LOGGER.info("Method executed successfully : " + jp.getSignature().getName());
     }
 
 }
