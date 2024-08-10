@@ -1,5 +1,6 @@
 package com.priyam.jobportalwithrest.aop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -7,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-@Aspect
+@Aspect                 //Aspect AOP
 public class LoggingAspect {
 
 
@@ -16,9 +17,9 @@ public class LoggingAspect {
 
     // return type, class-name.method-name(args)
 
-    @Before("execution(* com.priyam.jobportalwithrest.service.JobService.*(..))")
-    public void onMethodCall(){
-    //    System.out.println("onMethodCall");
-        LOGGER.info("Method called");
+    //Advice                                //PointCut
+    @Before("execution(* com.priyam.jobportalwithrest.service.JobService.getAllJobs(..)) || execution(* com.priyam.jobportalwithrest.service.JobService.getJob(..))")
+    public void onMethodCall(JoinPoint jp){             //join Point
+        LOGGER.info("Method called : " + jp.getSignature().getName());
     }
 }
