@@ -15,7 +15,7 @@ public class PerformanceAspect {
     //added logger
     private static final Logger LOGGER = LoggerFactory.getLogger(PerformanceAspect.class);
 
-    @Around("execution(* com.priyam.jobportalwithrest.service.JobService.getAllJobs(..)))")             //around advice
+    @Around("execution(* com.priyam.jobportalwithrest.service.JobService.getAllJobs(..))")             //around advice
     public Object monitorTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
 
